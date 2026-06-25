@@ -5,351 +5,1200 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Proyecto Berklee 2028 | Inés</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #111827;
-      color: #f9fafb;
-      line-height: 1.6;
+    :root{
+      --bg:#f7f4ff;
+      --paper:#ffffff;
+      --ink:#171525;
+      --muted:#6b6478;
+      --line:#e7def7;
+      --purple:#6d28d9;
+      --purple-dark:#3b0764;
+      --pink:#ec4899;
+      --pink-soft:#ffe1f3;
+      --turq:#14b8a6;
+      --turq-soft:#d7fff8;
+      --berklee:#d71920;
+      --gold:#f59e0b;
+      --shadow: 0 24px 70px rgba(74, 31, 130, .14);
+      --radius: 28px;
     }
 
-    .hero {
-      padding: 80px 24px;
-      text-align: center;
-      background: linear-gradient(135deg, #111827, #312e81, #7c2d12);
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 10% 5%, rgba(236,72,153,.18), transparent 30%),
+        radial-gradient(circle at 90% 12%, rgba(20,184,166,.22), transparent 34%),
+        radial-gradient(circle at 45% 90%, rgba(109,40,217,.12), transparent 38%),
+        var(--bg);
+      line-height:1.45;
     }
 
-    .hero h1 {
-      font-size: 48px;
-      margin: 0;
-      letter-spacing: -1px;
+    a{color:inherit;text-decoration:none}
+
+    .shell{
+      display:grid;
+      grid-template-columns: 270px 1fr;
+      min-height:100vh;
     }
 
-    .hero h2 {
-      font-weight: 400;
-      margin-top: 12px;
-      color: #fde68a;
+    aside{
+      position:sticky;
+      top:0;
+      height:100vh;
+      padding:28px 22px;
+      border-right:1px solid var(--line);
+      background:rgba(255,255,255,.70);
+      backdrop-filter: blur(18px);
+      z-index:10;
     }
 
-    .hero p {
-      max-width: 720px;
-      margin: 28px auto 0;
-      font-size: 20px;
-      color: #e5e7eb;
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      margin-bottom:34px;
     }
 
-    .container {
-      max-width: 1050px;
-      margin: auto;
-      padding: 48px 24px;
+    .monogram{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      background:linear-gradient(135deg, var(--purple), var(--pink), var(--turq));
+      color:white;
+      display:grid;
+      place-items:center;
+      font-weight:900;
+      letter-spacing:-1px;
+      box-shadow: 0 14px 30px rgba(109,40,217,.28);
     }
 
-    .section-title {
-      font-size: 32px;
-      margin-bottom: 16px;
-      color: #fde68a;
+    .brand small{
+      display:block;
+      color:var(--muted);
+      font-weight:700;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px;
     }
 
-    .intro {
-      font-size: 20px;
-      background: #1f2937;
-      padding: 28px;
-      border-radius: 18px;
-      border-left: 6px solid #f59e0b;
-      margin-bottom: 48px;
+    .brand strong{font-size:18px}
+
+    nav{display:grid;gap:8px}
+
+    nav a{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      padding:13px 14px;
+      border-radius:16px;
+      color:#393247;
+      font-weight:750;
+      font-size:14px;
+      transition:.2s ease;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 22px;
-      margin-top: 24px;
+    nav a:hover, nav a.active{
+      background:linear-gradient(90deg, rgba(236,72,153,.16), rgba(20,184,166,.12));
+      color:var(--purple-dark);
+      transform:translateX(3px);
     }
 
-    .card {
-      background: #1f2937;
-      padding: 26px;
-      border-radius: 18px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    .side-quote{
+      position:absolute;
+      left:22px;
+      right:22px;
+      bottom:28px;
+      padding:20px;
+      border-radius:22px;
+      background:linear-gradient(135deg, rgba(109,40,217,.11), rgba(236,72,153,.12));
+      border:1px solid rgba(109,40,217,.14);
+      color:#43364f;
+      font-size:14px;
     }
 
-    .card h3 {
-      margin-top: 0;
-      color: #fbbf24;
-      font-size: 24px;
+    .side-quote b{color:var(--purple)}
+
+    main{
+      padding:30px;
+      max-width:1320px;
+      width:100%;
+      margin:0 auto;
     }
 
-    .card p {
-      color: #d1d5db;
+    .hero{
+      position:relative;
+      overflow:hidden;
+      min-height:560px;
+      border-radius:var(--radius);
+      background:
+        linear-gradient(120deg, rgba(255,255,255,.96) 0%, rgba(255,255,255,.88) 48%, rgba(255,255,255,.70) 100%),
+        radial-gradient(circle at 78% 24%, rgba(236,72,153,.34), transparent 32%),
+        radial-gradient(circle at 92% 72%, rgba(20,184,166,.30), transparent 28%),
+        linear-gradient(135deg, #fff, #f5edff);
+      box-shadow:var(--shadow);
+      border:1px solid rgba(255,255,255,.75);
     }
 
-    .timeline {
-      margin-top: 32px;
-      border-left: 4px solid #f59e0b;
-      padding-left: 24px;
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:auto -80px -140px auto;
+      width:560px;
+      height:560px;
+      border-radius:999px;
+      background:conic-gradient(from 120deg, var(--pink), var(--purple), var(--turq), var(--pink));
+      opacity:.15;
+      filter:blur(4px);
     }
 
-    .timeline-item {
-      margin-bottom: 34px;
-      background: #1f2937;
-      padding: 24px;
-      border-radius: 16px;
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:30px;
+      padding:64px;
+      align-items:center;
     }
 
-    .timeline-item h3 {
-      margin-top: 0;
-      color: #fbbf24;
+    .eyebrow{
+      display:inline-flex;
+      gap:9px;
+      align-items:center;
+      width:max-content;
+      padding:9px 13px;
+      border-radius:999px;
+      background:rgba(255,255,255,.72);
+      border:1px solid var(--line);
+      color:var(--purple);
+      font-weight:850;
+      font-size:13px;
+      text-transform:uppercase;
+      letter-spacing:.12em;
     }
 
-    .quote {
-      margin: 56px 0;
-      padding: 40px;
-      border-radius: 22px;
-      background: linear-gradient(135deg, #7c2d12, #312e81);
-      text-align: center;
-      font-size: 28px;
-      font-weight: bold;
-      color: white;
+    h1{
+      margin:24px 0 18px;
+      font-size:clamp(50px, 7vw, 98px);
+      line-height:.92;
+      letter-spacing:-.07em;
     }
 
-    ul {
-      padding-left: 22px;
+    .gradient{
+      background:linear-gradient(90deg, var(--purple), var(--pink), var(--turq));
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
     }
 
-    li {
-      margin-bottom: 10px;
+    .hero p{
+      font-size:22px;
+      max-width:660px;
+      color:#4d455b;
+      margin:0 0 28px;
     }
 
-    .footer {
-      text-align: center;
-      padding: 42px 24px;
-      color: #9ca3af;
-      background: #030712;
+    .actions{
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      margin-top:30px;
     }
 
-    .highlight {
-      color: #fde68a;
-      font-weight: bold;
+    .btn{
+      border:0;
+      cursor:pointer;
+      border-radius:18px;
+      padding:15px 20px;
+      font-weight:900;
+      letter-spacing:.01em;
+      transition:.2s ease;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
     }
 
-    @media (max-width: 640px) {
-      .hero h1 {
-        font-size: 36px;
+    .btn-primary{
+      color:white;
+      background:linear-gradient(135deg, var(--purple), var(--pink), var(--turq));
+      box-shadow:0 16px 35px rgba(109,40,217,.22);
+    }
+
+    .btn-secondary{
+      color:var(--purple-dark);
+      background:white;
+      border:1px solid var(--line);
+    }
+
+    .btn:hover{transform:translateY(-2px)}
+
+    .hero-card{
+      position:relative;
+      border-radius:30px;
+      padding:30px;
+      background:rgba(255,255,255,.76);
+      border:1px solid rgba(255,255,255,.9);
+      box-shadow:0 25px 60px rgba(74,31,130,.13);
+    }
+
+    .count{
+      text-align:center;
+      padding:34px 24px;
+      border-radius:26px;
+      background:
+        radial-gradient(circle at 80% 10%, rgba(20,184,166,.18), transparent 30%),
+        linear-gradient(135deg, #ffffff, #fff4fb);
+      border:1px solid var(--line);
+    }
+
+    .count .num{
+      font-size:82px;
+      font-weight:200;
+      letter-spacing:-.06em;
+      color:var(--purple);
+    }
+
+    .count .label{
+      color:var(--muted);
+      font-weight:750;
+    }
+
+    .mini-kpis{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:14px;
+    }
+
+    .mini-kpi{
+      border-radius:20px;
+      background:white;
+      border:1px solid var(--line);
+      padding:18px;
+    }
+
+    .mini-kpi strong{
+      display:block;
+      font-size:24px;
+      color:var(--pink);
+    }
+
+    .mini-kpi span{
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+    }
+
+    section{margin-top:28px}
+
+    .section-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:end;
+      gap:20px;
+      margin:42px 0 18px;
+    }
+
+    .section-head h2{
+      margin:0;
+      font-size:32px;
+      letter-spacing:-.04em;
+    }
+
+    .section-head p{
+      margin:0;
+      color:var(--muted);
+      max-width:560px;
+    }
+
+    .panel{
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.85);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .roadmap{
+      padding:28px;
+      display:grid;
+      grid-template-columns:repeat(4, 1fr);
+      gap:16px;
+      position:relative;
+    }
+
+    .phase{
+      position:relative;
+      padding:25px;
+      border-radius:24px;
+      background:white;
+      border:1px solid var(--line);
+      transition:.25s ease;
+      min-height:270px;
+    }
+
+    .phase:hover{
+      transform:translateY(-6px);
+      box-shadow:0 20px 40px rgba(109,40,217,.12);
+      border-color:rgba(236,72,153,.35);
+    }
+
+    .phase .badge{
+      width:54px;
+      height:54px;
+      border-radius:19px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg, rgba(236,72,153,.16), rgba(20,184,166,.18));
+      font-size:26px;
+      margin-bottom:18px;
+    }
+
+    .phase small{
+      color:var(--pink);
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.09em;
+    }
+
+    .phase h3{
+      margin:8px 0 14px;
+      font-size:22px;
+      letter-spacing:-.03em;
+    }
+
+    .phase ul{
+      list-style:none;
+      padding:0;
+      margin:0;
+      display:grid;
+      gap:10px;
+      color:#51495e;
+      font-size:14px;
+    }
+
+    .phase li::before{
+      content:"✓";
+      color:var(--turq);
+      font-weight:900;
+      margin-right:8px;
+    }
+
+    .dashboard{
+      display:grid;
+      grid-template-columns:1.15fr 1fr 1fr;
+      gap:18px;
+      padding:28px;
+    }
+
+    .dash-card{
+      padding:26px;
+      border-radius:24px;
+      background:white;
+      border:1px solid var(--line);
+    }
+
+    .dash-card h3{
+      margin:0 0 20px;
+      font-size:18px;
+      letter-spacing:-.02em;
+    }
+
+    .metric{margin:16px 0}
+
+    .metric-row{
+      display:flex;
+      justify-content:space-between;
+      font-weight:800;
+      font-size:14px;
+      margin-bottom:8px;
+    }
+
+    .bar{
+      height:10px;
+      background:#eee8f8;
+      border-radius:999px;
+      overflow:hidden;
+    }
+
+    .fill{
+      height:100%;
+      border-radius:999px;
+      width:var(--w);
+      background:linear-gradient(90deg, var(--purple), var(--pink), var(--turq));
+      transition: width .6s ease;
+    }
+
+    .achievements{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:14px;
+    }
+
+    .ach{
+      text-align:center;
+      padding:16px 10px;
+      border-radius:18px;
+      background:linear-gradient(135deg, #fff, #faf3ff);
+      border:1px solid var(--line);
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .ach:hover{transform:translateY(-3px)}
+    .ach.locked{opacity:.45; filter:grayscale(.6)}
+
+    .ach .icon{
+      width:46px;
+      height:46px;
+      border-radius:17px;
+      margin:0 auto 10px;
+      display:grid;
+      place-items:center;
+      color:white;
+      background:linear-gradient(135deg, var(--pink), var(--purple));
+      font-size:22px;
+    }
+
+    .ach:nth-child(3n) .icon{
+      background:linear-gradient(135deg, var(--turq), var(--purple));
+    }
+
+    .goal{
+      display:grid;
+      grid-template-columns:82px 1fr;
+      gap:18px;
+      align-items:center;
+    }
+
+    .ring{
+      width:82px;
+      height:82px;
+      border-radius:999px;
+      background:conic-gradient(var(--pink) 0 65%, #eee8f8 65% 100%);
+      display:grid;
+      place-items:center;
+    }
+
+    .ring::before{
+      content:"🎵";
+      width:62px;
+      height:62px;
+      border-radius:999px;
+      background:white;
+      display:grid;
+      place-items:center;
+      font-size:26px;
+    }
+
+    .checklist{
+      list-style:none;
+      padding:0;
+      margin:22px 0 0;
+      display:grid;
+      gap:12px;
+      color:#554b62;
+    }
+
+    .checklist li{
+      display:flex;
+      align-items:center;
+      gap:10px;
+    }
+
+    .checklist input{
+      width:18px;
+      height:18px;
+      accent-color:var(--pink);
+    }
+
+    .portfolio{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:16px;
+      padding:28px;
+    }
+
+    .work{
+      min-height:210px;
+      border-radius:24px;
+      overflow:hidden;
+      background:white;
+      border:1px solid var(--line);
+      transition:.22s ease;
+      cursor:pointer;
+    }
+
+    .work:hover{
+      transform:translateY(-5px);
+      box-shadow:0 20px 40px rgba(236,72,153,.12);
+    }
+
+    .art{
+      height:122px;
+      display:grid;
+      place-items:center;
+      color:white;
+      font-size:40px;
+      background:
+        radial-gradient(circle at 30% 20%, rgba(255,255,255,.35), transparent 22%),
+        linear-gradient(135deg, var(--purple), var(--pink), var(--turq));
+    }
+
+    .work:nth-child(2) .art{background:linear-gradient(135deg, var(--pink), #fb7185, var(--gold))}
+    .work:nth-child(3) .art{background:linear-gradient(135deg, var(--turq), #38bdf8, var(--purple))}
+    .work:nth-child(4) .art{background:linear-gradient(135deg, #111827, var(--purple), var(--pink))}
+    .work:nth-child(5) .art{background:linear-gradient(135deg, var(--gold), var(--pink), var(--purple))}
+
+    .work .body{padding:16px}
+    .work strong{display:block}
+    .work span{color:var(--muted); font-size:13px}
+
+    .bottom-grid{
+      display:grid;
+      grid-template-columns:1.1fr .9fr .9fr;
+      gap:18px;
+      margin-top:18px;
+    }
+
+    .letter{
+      padding:30px;
+      border-radius:var(--radius);
+      color:white;
+      background:
+        radial-gradient(circle at 90% 90%, rgba(20,184,166,.34), transparent 30%),
+        linear-gradient(135deg, var(--purple), var(--pink));
+      box-shadow:var(--shadow);
+    }
+
+    .letter button{
+      margin-top:14px;
+      background:rgba(255,255,255,.20);
+      color:white;
+      border:1px solid rgba(255,255,255,.35);
+    }
+
+    .resources, .today{
+      padding:30px;
+      border-radius:var(--radius);
+      background:rgba(255,255,255,.78);
+      border:1px solid rgba(255,255,255,.85);
+      box-shadow:var(--shadow);
+    }
+
+    .resource{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:12px 0;
+      border-bottom:1px solid var(--line);
+      color:#40374b;
+      font-weight:750;
+    }
+
+    .resource:last-child{border-bottom:0}
+
+    .footer-quote{
+      margin:24px 0 0;
+      padding:34px;
+      border-radius:var(--radius);
+      background:white;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      text-align:center;
+      font-size:26px;
+      letter-spacing:-.03em;
+      color:#372d45;
+    }
+
+    .footer-quote b:nth-child(1){color:var(--pink)}
+    .footer-quote b:nth-child(2){color:var(--turq)}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      display:none;
+      place-items:center;
+      background:rgba(21,16,34,.48);
+      backdrop-filter:blur(10px);
+      z-index:100;
+      padding:20px;
+    }
+
+    .modal.open{display:grid}
+
+    .modal-card{
+      width:min(720px, 100%);
+      border-radius:30px;
+      padding:36px;
+      background:white;
+      box-shadow:0 40px 100px rgba(0,0,0,.28);
+      border:1px solid var(--line);
+    }
+
+    .modal-card h2{
+      margin-top:0;
+      color:var(--purple);
+    }
+
+    .modal-close{
+      float:right;
+      border:0;
+      background:#f4eefc;
+      border-radius:999px;
+      width:38px;
+      height:38px;
+      cursor:pointer;
+      font-weight:900;
+    }
+
+    .mobile-top{
+      display:none;
+      position:sticky;
+      top:0;
+      z-index:30;
+      padding:14px;
+      background:rgba(255,255,255,.82);
+      backdrop-filter:blur(16px);
+      border-bottom:1px solid var(--line);
+      justify-content:space-between;
+      align-items:center;
+    }
+
+    .hamb{
+      border:1px solid var(--line);
+      background:white;
+      border-radius:14px;
+      padding:10px 12px;
+      font-weight:900;
+    }
+
+    @media (max-width: 1100px){
+      .shell{grid-template-columns:1fr}
+      aside{
+        display:none;
+        position:fixed;
+        left:0;
+        top:61px;
+        height:calc(100vh - 61px);
+        width:290px;
       }
+      aside.open{display:block}
+      .mobile-top{display:flex}
+      main{padding:18px}
+      .hero-inner{grid-template-columns:1fr; padding:34px}
+      .roadmap{grid-template-columns:1fr 1fr}
+      .dashboard{grid-template-columns:1fr}
+      .portfolio{grid-template-columns:1fr 1fr}
+      .bottom-grid{grid-template-columns:1fr}
+    }
 
-      .hero p,
-      .intro {
-        font-size: 18px;
-      }
-
-      .quote {
-        font-size: 22px;
-        padding: 30px;
-      }
+    @media (max-width: 680px){
+      h1{font-size:56px}
+      .hero-inner{padding:26px}
+      .hero p{font-size:18px}
+      .roadmap{grid-template-columns:1fr}
+      .portfolio{grid-template-columns:1fr}
+      .mini-kpis{grid-template-columns:1fr}
+      .achievements{grid-template-columns:1fr 1fr}
+      .section-head{display:block}
+      .footer-quote{font-size:20px}
     }
   </style>
 </head>
 
 <body>
+  <div class="mobile-top">
+    <strong>Proyecto Berklee 2028</strong>
+    <button class="hamb" onclick="toggleMenu()">☰</button>
+  </div>
 
-  <section class="hero">
-    <h1>Proyecto Berklee 2028</h1>
-    <h2>El camino de Inés hacia una carrera en la música</h2>
-    <p>
-      Este no es solamente un plan para postular a una universidad.
-      Es un roadmap para construir una artista completa: guitarrista,
-      compositora, productora y música con identidad propia.
-    </p>
-  </section>
-
-  <main class="container">
-
-    <section class="intro">
-      <p>
-        La meta no es solo entrar a Berklee. La meta es que Inés llegue a la admisión
-        con un perfil tan sólido, creativo y auténtico que Berklee vea en ella
-        a una candidata con verdadero potencial.
-      </p>
-      <p>
-        El objetivo final es claro: que la música no sea solamente una pasión,
-        sino una carrera posible, seria y emocionante.
-      </p>
-    </section>
-
-    <section>
-      <h2 class="section-title">Los 5 pilares del camino</h2>
-
-      <div class="grid">
-        <div class="card">
-          <h3>1. Guitarra</h3>
-          <p>
-            Su instrumento principal. La guitarra será la base de su identidad musical.
-            El objetivo es llegar con técnica, musicalidad, expresividad y personalidad.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>2. Piano</h3>
-          <p>
-            No para convertirla en pianista, sino para convertirla en mejor productora.
-            El piano le ayudará a entender armonía, componer, arreglar y producir.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>3. Producción Musical</h3>
-          <p>
-            Aprender Logic Pro o Ableton. Grabar, editar, mezclar, crear beats,
-            usar instrumentos virtuales y construir canciones completas.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>4. Composición</h3>
-          <p>
-            Escribir música propia. No esperar a que todo sea perfecto.
-            Crear, probar, equivocarse, mejorar y encontrar una voz personal.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>5. Portfolio</h3>
-          <p>
-            Llegar a la postulación con material real: canciones, demos,
-            arreglos, colaboraciones y producciones que muestren evolución.
-          </p>
+  <div class="shell">
+    <aside id="sidebar">
+      <div class="brand">
+        <div class="monogram">IB</div>
+        <div>
+          <small>Inés</small>
+          <strong>Proyecto Berklee</strong>
         </div>
       </div>
-    </section>
 
-    <section>
-      <h2 class="section-title">Roadmap 2026–2028</h2>
+      <nav>
+        <a class="active" href="#inicio">⌂ Inicio</a>
+        <a href="#base">✦ Base actual</a>
+        <a href="#roadmap">◇ Roadmap</a>
+        <a href="#progreso">▰ Progreso</a>
+        <a href="#portfolio">♪ Portfolio</a>
+        <a href="#carta">♡ Carta</a>
+        <a href="#recursos">↗ Recursos</a>
+      </nav>
 
-      <div class="timeline">
-        <div class="timeline-item">
-          <h3>Segundo semestre 2026 | Construir las bases</h3>
-          <ul>
-            <li>Continuar guitarra con foco en musicalidad y audición.</li>
-            <li>Empezar clases de piano como herramienta de composición.</li>
-            <li>Elegir DAW: Logic Pro o Ableton.</li>
-            <li>Comenzar sus primeras producciones.</li>
-            <li>Crear el hábito de trabajar música todas las semanas.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Primer semestre 2027 | Crear sin miedo</h3>
-          <ul>
-            <li>Producir sus primeras canciones completas.</li>
-            <li>Componer ideas propias.</li>
-            <li>Grabar guitarra y experimentar con sonidos.</li>
-            <li>Fortalecer ear training, armonía y teoría musical.</li>
-            <li>Empezar a construir su identidad como artista.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Segundo semestre 2027 | Preparar la postulación</h3>
-          <ul>
-            <li>Seleccionar repertorio para la audición.</li>
-            <li>Preparar entrevista en inglés.</li>
-            <li>Elegir las mejores piezas del portfolio.</li>
-            <li>Hacer simulacros de audición.</li>
-            <li>Aplicar a Berklee para Fall 2028.</li>
-          </ul>
-        </div>
-
-        <div class="timeline-item">
-          <h3>Primer semestre 2028 | Cerrar el colegio y mirar hacia adelante</h3>
-          <ul>
-            <li>Terminar el IB con tranquilidad y foco.</li>
-            <li>Seguir creando música.</li>
-            <li>Evaluar admisión, beca y próximos pasos.</li>
-            <li>Prepararse emocionalmente para la transición universitaria.</li>
-          </ul>
-        </div>
+      <div class="side-quote">
+        “La música no es lo que hago. Es quién soy.”<br><br>
+        <b>— Inés</b>
       </div>
-    </section>
+    </aside>
 
-    <section>
-      <h2 class="section-title">Metas concretas antes de postular</h2>
+    <main>
+      <section class="hero" id="inicio">
+        <div class="hero-inner">
+          <div>
+            <div class="eyebrow">🎸 Fall 2028 · Berklee College of Music</div>
+            <h1>Proyecto <span class="gradient">Berklee</span> 2028</h1>
+            <p>
+              Un roadmap para que Inés llegue a Berklee como una música completa:
+              guitarrista, pianista funcional, compositora, productora y artista con voz propia.
+              Parte de una base real: IB Música, años de banda, recitales y canciones propias.
+            </p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#roadmap">Ver mi roadmap ↓</a>
+              <button class="btn btn-secondary" onclick="openModal('vision')">Leer la visión</button>
+            </div>
+          </div>
 
-      <div class="grid">
-        <div class="card">
-          <h3>10 producciones</h3>
-          <p>
-            No tienen que ser perfectas. Tienen que mostrar trabajo, evolución,
-            sensibilidad y capacidad creativa.
-          </p>
+          <div class="hero-card">
+            <div class="count">
+              <div class="label">Faltan aproximadamente para aplicar Early Action</div>
+              <div class="num" id="days">—</div>
+              <div class="label">días</div>
+            </div>
+            <div class="mini-kpis">
+              <div class="mini-kpi"><strong>10</strong><span>Producciones</span></div>
+              <div class="mini-kpi"><strong>5</strong><span>Composiciones</span></div>
+              <div class="mini-kpi"><strong>Venus</strong><span>Banda desde niña</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      <section id="base">
+        <div class="section-head">
+          <div>
+            <h2>La base que Inés ya tiene</h2>
+            <p>Este proyecto no empieza de cero. Inés ya tiene una historia musical que debe formar parte central de su aplicación.</p>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>5 composiciones propias</h3>
-          <p>
-            Canciones, piezas instrumentales, ideas desarrolladas o arreglos.
-            Lo importante es crear obra propia.
-          </p>
+        <div class="panel">
+          <div class="roadmap">
+            <div class="phase">
+              <div class="badge">🎓</div>
+              <small>IB Música SL</small>
+              <h3>Única alumna del curso</h3>
+              <ul>
+                <li>Está llevando IB Música en Subsidiary Level</li>
+                <li>El colegio no ofrece Higher Level</li>
+                <li>Debe buscar una nota sobresaliente</li>
+                <li>Su caso muestra iniciativa y foco musical</li>
+              </ul>
+            </div>
+
+            <div class="phase">
+              <div class="badge">🎸</div>
+              <small>Instrumento principal</small>
+              <h3>Guitarra como eje</h3>
+              <ul>
+                <li>El trabajo del IB está centrado en guitarra</li>
+                <li>Debe convertir ese eje en una audición potente</li>
+                <li>La prioridad es musicalidad, expresión e identidad</li>
+                <li>La técnica debe estar al servicio de su voz propia</li>
+              </ul>
+            </div>
+
+            <div class="phase">
+              <div class="badge">🎤</div>
+              <small>Banda Venus</small>
+              <h3>Experiencia desde los 9–10 años</h3>
+              <ul>
+                <li>Participa en la banda Venus desde niña</li>
+                <li>Ha tocado en varios recitales</li>
+                <li>Tiene experiencia real sobre escenario</li>
+                <li>Eso aporta madurez musical y colaboración</li>
+              </ul>
+            </div>
+
+            <div class="phase">
+              <div class="badge">✍️</div>
+              <small>Canciones propias</small>
+              <h3>Composición y colaboración</h3>
+              <ul>
+                <li>Ha compuesto o participado en canciones de la banda</li>
+                <li>Ese material debe ordenarse como portfolio</li>
+                <li>Conviene documentar créditos y procesos creativos</li>
+                <li>Esto puede diferenciarla frente a otros postulantes</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="estrategia">
+        <div class="section-head">
+          <div>
+            <h2>Estrategia para que esto impacte en Berklee</h2>
+            <p>Como el IB Música es SL y no HL, debe usarse estratégicamente: no basta con llevar el curso, tiene que destacar de manera muy clara.</p>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>1 colaboración</h3>
-          <p>
-            Trabajar con otro músico, cantante o productor. Berklee valora mucho
-            la capacidad de colaborar.
-          </p>
+        <div class="panel">
+          <div class="dashboard">
+            <div class="dash-card">
+              <h3>IB Música SL</h3>
+              <p style="color:var(--muted);margin-top:0;">
+                El objetivo debe ser una nota muy sobresaliente. Como no existe HL en el colegio, se debe explicar que Inés tomó el máximo nivel disponible.
+              </p>
+              <div class="metric">
+                <div class="metric-row"><span>Prioridad</span><span>Alta</span></div>
+                <div class="bar"><div class="fill" style="--w:90%"></div></div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <h3>Venus</h3>
+              <p style="color:var(--muted);margin-top:0;">
+                La banda Venus debe presentarse como evidencia de trayectoria: años de constancia, recitales, trabajo en equipo y creación musical real.
+              </p>
+              <div class="metric">
+                <div class="metric-row"><span>Valor diferencial</span><span>Muy alto</span></div>
+                <div class="bar"><div class="fill" style="--w:95%"></div></div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <h3>Piano paralelo</h3>
+              <p style="color:var(--muted);margin-top:0;">
+                El piano debe entrar como herramienta de producción, composición y armonía. No reemplaza a la guitarra; la complementa.
+              </p>
+              <div class="metric">
+                <div class="metric-row"><span>Impacto musical</span><span>Alto</span></div>
+                <div class="bar"><div class="fill" style="--w:80%"></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="roadmap">
+        <div class="section-head">
+          <div>
+            <h2>Roadmap 2026–2028</h2>
+            <p>Un plan claro, exigente y motivador. No para correr, sino para construir bien.</p>
+          </div>
         </div>
 
-        <div class="card">
-          <h3>Audición sólida</h3>
-          <p>
-            Una pieza preparada que muestre quién es Inés musicalmente,
-            no solamente lo que puede tocar.
-          </p>
+        <div class="panel">
+          <div class="roadmap">
+            <div class="phase">
+              <div class="badge">🌱</div>
+              <small>2º sem 2026</small>
+              <h3>Construir las bases</h3>
+              <ul>
+                <li>Guitarra con foco en audición</li>
+                <li>IB Música SL con meta sobresaliente</li>
+                <li>Empezar piano en paralelo</li>
+                <li>Ordenar historial de Venus</li>
+                <li>Elegir Logic Pro o Ableton</li>
+              </ul>
+            </div>
+
+            <div class="phase">
+              <div class="badge">🎹</div>
+              <small>1º sem 2027</small>
+              <h3>Crear sin miedo</h3>
+              <ul>
+                <li>Componer canciones propias</li>
+                <li>Revisar canciones de Venus</li>
+                <li>Grabar guitarra y primeras producciones</li>
+                <li>Créditos de composición claros, piano y ear training</li>
+                <li>Documentar recitales y colaboraciones</li>
+              </ul>
+            </div>
+
+            <div class="phase">
+              <div class="badge">🎯</div>
+              <small>2º sem 2027</small>
+              <h3>Preparar postulación</h3>
+              <ul>
+                <li>Repertorio de audición</li>
+                <li>Portfolio final: IB, Venus, demos y producciones</li>
+                <li>Entrevista en inglés</li>
+                <li>Simulacros de audición</li>
+                <li>Aplicación Early Action</li>
+              </ul>
+            </div>
+
+            <div class="phase">
+              <div class="badge">🚀</div>
+              <small>1º sem 2028</small>
+              <h3>Mirar hacia adelante</h3>
+              <ul>
+                <li>Terminar IB con calma</li>
+                <li>Seguir produciendo</li>
+                <li>Evaluar admisión y beca</li>
+                <li>Preparar transición</li>
+                <li>Boston como siguiente etapa</li>
+              </ul>
+            </div>
+          </div>
         </div>
+      </section>
+
+      <section id="progreso">
+        <div class="section-head">
+          <div>
+            <h2>Dashboard de progreso</h2>
+            <p>Una vista simple para saber qué se está construyendo y qué viene después.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="dashboard">
+            <div class="dash-card">
+              <h3>Progreso actual</h3>
+
+              <div class="metric">
+                <div class="metric-row"><span>Guitarra</span><span>85%</span></div>
+                <div class="bar"><div class="fill" style="--w:85%"></div></div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-row"><span>Piano</span><span>15%</span></div>
+                <div class="bar"><div class="fill" style="--w:15%"></div></div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-row"><span>Producción musical</span><span>35%</span></div>
+                <div class="bar"><div class="fill" style="--w:35%"></div></div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-row"><span>Composición / Venus</span><span>65%</span></div>
+                <div class="bar"><div class="fill" style="--w:65%"></div></div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-row"><span>Ear Training</span><span>50%</span></div>
+                <div class="bar"><div class="fill" style="--w:50%"></div></div>
+              </div>
+
+              <div class="metric">
+                <div class="metric-row"><span>Portfolio ordenado</span><span>30%</span></div>
+                <div class="bar"><div class="fill" style="--w:30%"></div></div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <h3>Logros desbloqueados</h3>
+              <div class="achievements">
+                <div class="ach" onclick="openModal('venus')"><div class="icon">🎤</div><small>Banda Venus</small></div>
+                <div class="ach" onclick="openModal('ibmusic')"><div class="icon">🎓</div><small>IB Música SL</small></div>
+                <div class="ach" onclick="openModal('cancion')"><div class="icon">♪</div><small>Canciones propias</small></div>
+                <div class="ach" onclick="openModal('piano')"><div class="icon">🎹</div><small>Piano paralelo</small></div>
+                <div class="ach"><div class="icon">⭐</div><small>Disciplina</small></div>
+                <div class="ach locked"><div class="icon">🔒</div><small>Aplicación enviada</small></div>
+              </div>
+            </div>
+
+            <div class="dash-card">
+              <h3>Próxima meta</h3>
+              <div class="goal">
+                <div class="ring"></div>
+                <div>
+                  <h3 style="margin:0;">Ordenar el portfolio Venus + IB</h3>
+                  <p style="margin:8px 0 0;color:var(--muted)">Meta actual: 45%</p>
+                </div>
+              </div>
+
+              <ul class="checklist">
+                <li><input type="checkbox" checked> Lista de recitales</li>
+                <li><input type="checkbox" checked> Canciones propias identificadas</li>
+                <li><input type="checkbox" checked> Créditos de composición claros</li>
+                <li><input type="checkbox"> Videos / audios seleccionados</li>
+                <li><input type="checkbox"> Portfolio final editable</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio">
+        <div class="section-head">
+          <div>
+            <h2>Portfolio destacado</h2>
+            <p>El portfolio será la prueba concreta de su evolución. La música debe existir, no solo planearse.</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="portfolio">
+            <div class="work" onclick="openModal('demo')">
+              <div class="art">🎙️</div>
+              <div class="body"><strong>Venus</strong><span>recitales y banda</span></div>
+            </div>
+            <div class="work" onclick="openModal('comp')">
+              <div class="art">✍️</div>
+              <div class="body"><strong>Canciones propias</strong><span>créditos y proceso</span></div>
+            </div>
+            <div class="work" onclick="openModal('prod')">
+              <div class="art">🎛️</div>
+              <div class="body"><strong>Producciones</strong><span>10 tracks objetivo</span></div>
+            </div>
+            <div class="work" onclick="openModal('collab')">
+              <div class="art">👥</div>
+              <div class="body"><strong>Colaboraciones</strong><span>1 proyecto mínimo</span></div>
+            </div>
+            <div class="work" onclick="openModal('live')">
+              <div class="art">🎸</div>
+              <div class="body"><strong>IB Música SL</strong><span>máximo nivel disponible</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-grid">
+        <div class="letter" id="carta">
+          <h2>Carta de Papá</h2>
+          <p>
+            Inés, no espero que seas la mejor música del mundo. Solo espero que tengas el coraje de descubrir hasta dónde puedes llegar.
+          </p>
+          <p>
+            Estoy contigo en cada acorde, en cada idea, en cada paso de este camino.
+          </p>
+          <button class="btn" onclick="openModal('letter')">Leer la carta completa →</button>
+        </div>
+
+        <div class="resources" id="recursos">
+          <h2>Recursos clave</h2>
+          <a class="resource" href="https://college.berklee.edu/admissions/undergraduate" target="_blank">Berklee Admissions <span>→</span></a>
+          <a class="resource" href="https://www.apple.com/logic-pro/" target="_blank">Logic Pro <span>→</span></a>
+          <a class="resource" href="https://www.ableton.com/" target="_blank">Ableton Live <span>→</span></a>
+          <a class="resource" href="https://college.berklee.edu/summer" target="_blank">Berklee Summer Programs <span>→</span></a>
+          <a class="resource" href="https://college.berklee.edu/admissions/undergraduate/auditionandinterview" target="_blank">Audition & Interview <span>→</span></a>
+        </div>
+
+        <div class="today">
+          <h2>Hoy voy a...</h2>
+          <ul class="checklist">
+            <li><input type="checkbox"> Practicar guitarra 1 hora</li>
+            <li><input type="checkbox"> Clase de piano</li>
+            <li><input type="checkbox"> Trabajar mi canción</li>
+            <li><input type="checkbox"> Ear training 20 min</li>
+            <li><input type="checkbox"> Guardar una nueva idea</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="footer-quote">
+        “No quiero llegar a <b>Berklee</b> para empezar a ser música.
+        Quiero llegar a Berklee porque <b>ya empecé</b>.”
       </div>
-    </section>
+    </main>
+  </div>
 
-    <div class="quote">
-      “No quiero llegar a Berklee para empezar a ser música.
-      Quiero llegar a Berklee porque ya empecé.”
+  <div class="modal" id="modal" onclick="closeModal(event)">
+    <div class="modal-card">
+      <button class="modal-close" onclick="forceClose()">×</button>
+      <h2 id="modalTitle">Título</h2>
+      <p id="modalText">Texto</p>
     </div>
+  </div>
 
-    <section>
-      <h2 class="section-title">Mensaje para Inés</h2>
+  <script>
+    const modalContent = {
+      vision: {
+        title: "La visión",
+        text: "El objetivo no es solamente entrar a Berklee. El objetivo es que Inés llegue como una candidata que ya empezó su camino: toca, compone, produce, colabora y tiene una voz propia en formación."
+      },
+      cancion: {
+        title: "Primera canción",
+        text: "La primera canción completa no tiene que ser perfecta. Tiene que existir. Será el primer hito real de su camino como productora."
+      },
+      piano: {
+        title: "Piano iniciado",
+        text: "El piano no es para convertirla en pianista clásica. Es una herramienta para producir, componer, entender armonía y trabajar mejor en el estudio."
+      },
+      logic: {
+        title: "DAW elegido",
+        text: "Logic Pro o Ableton será su taller de trabajo. Allí grabará ideas, construirá canciones y empezará a sonar como ella."
+      },
+      venus: {
+        title: "Banda Venus",
+        text: "La participación de Inés en Venus desde los 9–10 años es un activo muy fuerte: muestra trayectoria, constancia, escenario, trabajo en equipo y creación musical real."
+      },
+      ibmusic: {
+        title: "IB Música Subsidiary Level",
+        text: "Inés está llevando IB Música SL porque el colegio no ofrece Higher Level. La estrategia es que obtenga un resultado sobresaliente y explique que tomó el máximo nivel disponible."
+      },
+      demo: {
+        title: "Demos",
+        text: "Demos simples pero reales: guitarra, voz, ideas, arreglos y primeras versiones de canciones propias."
+      },
+      comp: {
+        title: "Composiciones",
+        text: "Cinco piezas propias antes de postular. Pueden ser canciones, instrumentales, arreglos o ideas desarrolladas."
+      },
+      prod: {
+        title: "Producciones",
+        text: "Diez producciones terminadas. La clave no es que todas sean brillantes, sino que muestren evolución."
+      },
+      collab: {
+        title: "Colaboraciones",
+        text: "Berklee valora mucho la colaboración. Trabajar con otra persona le enseñará a escuchar, adaptar y construir en equipo."
+      },
+      live: {
+        title: "Performance",
+        text: "La audición debe mostrar técnica, pero sobre todo musicalidad, expresividad y personalidad."
+      },
+      letter: {
+        title: "Carta de Papá",
+        text: "Inés, este camino no empieza de cero. Ya tienes años de música, banda, recitales, guitarra, canciones y ahora IB Música. No espero que seas la mejor música del mundo. Solo espero que tengas el coraje de descubrir hasta dónde puedes llegar. Cada clase de guitarra, cada clase de piano, cada canción de Venus, cada idea que produzcas y cada intento te va a acercar a la artista que puedes llegar a ser. Yo voy a estar siempre de tu lado."
+      }
+    };
 
-      <div class="intro">
-        <p>
-          Inés, este camino no se trata de ser perfecta.
-          Se trata de construir algo tuyo.
-        </p>
+    function openModal(key){
+      const item = modalContent[key];
+      document.getElementById("modalTitle").textContent = item.title;
+      document.getElementById("modalText").textContent = item.text;
+      document.getElementById("modal").classList.add("open");
+    }
 
-        <p>
-          Cada clase de guitarra, cada acorde en el piano, cada canción que produzcas
-          y cada idea que grabes te va acercando a la artista que puedes llegar a ser.
-        </p>
+    function closeModal(e){
+      if(e.target.id === "modal") forceClose();
+    }
 
-        <p>
-          Berklee no busca solamente personas que toquen bien.
-          Busca personas con voz propia, curiosidad, disciplina, creatividad
-          y ganas reales de hacer música.
-        </p>
+    function forceClose(){
+      document.getElementById("modal").classList.remove("open");
+    }
 
-        <p>
-          Si trabajas con constancia, este proyecto puede convertirse en el inicio
-          de una carrera en la industria musical.
-        </p>
+    function toggleMenu(){
+      document.getElementById("sidebar").classList.toggle("open");
+    }
 
-        <p class="highlight">
-          No tienes que tener todo resuelto hoy. Solo tienes que empezar en serio.
-        </p>
-      </div>
-    </section>
+    function setDays(){
+      const target = new Date("2027-11-01T00:00:00");
+      const today = new Date();
+      const diff = target - today;
+      const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
+      document.getElementById("days").textContent = days;
+    }
 
-  </main>
+    setDays();
 
-  <footer class="footer">
-    Proyecto Berklee 2028 · Roadmap personal para Inés
-  </footer>
-
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", () => {
+        document.querySelectorAll("nav a").forEach(a => a.classList.remove("active"));
+        link.classList.add("active");
+        document.getElementById("sidebar").classList.remove("open");
+      });
+    });
+  </script>
 </body>
 </html>
